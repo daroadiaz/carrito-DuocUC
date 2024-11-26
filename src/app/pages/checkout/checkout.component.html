@@ -1,0 +1,116 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="eight columns offset-by-two">
+      <div class="checkout-container">
+        <h2 class="text-center">Finalizar Compra</h2>
+        
+        <div id="resumen-compra" class="margin-bottom">
+          <h4>Resumen del Pedido</h4>
+          <div class="resumen-items">
+            <div class="resumen-item" *ngFor="let item of cartItems">
+              <div class="item-info">
+                <img [src]="item.imagen" width="50" [alt]="item.titulo">
+                <span class="item-titulo">{{item.titulo}}</span>
+              </div>
+              <div class="item-precio">
+                <span>{{item.precio}} x {{item.cantidad}}</span>
+                <strong>{{calcularSubtotal(item) | currency}}</strong>
+              </div>
+            </div>
+          </div>
+          <div class="total-compra text-right">
+            <h3>Total: {{total | currency}}</h3>
+          </div>
+        </div>
+
+        <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="twelve columns">
+              <label for="nombre">Nombre Completo</label>
+              <input 
+                class="u-full-width" 
+                type="text" 
+                id="nombre" 
+                formControlName="nombre"
+                [class.error]="isFieldInvalid('nombre')"
+              >
+              <span class="error-message" *ngIf="isFieldInvalid('nombre')">
+                {{getErrorMessage('nombre')}}
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="twelve columns">
+              <label for="email">Correo Electrónico</label>
+              <input 
+                class="u-full-width" 
+                type="email" 
+                id="email" 
+                formControlName="email"
+                [class.error]="isFieldInvalid('email')"
+              >
+              <span class="error-message" *ngIf="isFieldInvalid('email')">
+                {{getErrorMessage('email')}}
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="twelve columns">
+              <label for="direccion">Dirección de Envío</label>
+              <textarea 
+                class="u-full-width" 
+                id="direccion" 
+                formControlName="direccion"
+                [class.error]="isFieldInvalid('direccion')"
+              ></textarea>
+              <span class="error-message" *ngIf="isFieldInvalid('direccion')">
+                {{getErrorMessage('direccion')}}
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="six columns">
+              <label for="ciudad">Ciudad</label>
+              <input 
+                class="u-full-width" 
+                type="text" 
+                id="ciudad" 
+                formControlName="ciudad"
+                [class.error]="isFieldInvalid('ciudad')"
+              >
+              <span class="error-message" *ngIf="isFieldInvalid('ciudad')">
+                {{getErrorMessage('ciudad')}}
+              </span>
+            </div>
+            <div class="six columns">
+              <label for="telefono">Teléfono</label>
+              <input 
+                class="u-full-width" 
+                type="tel" 
+                id="telefono" 
+                formControlName="telefono"
+                [class.error]="isFieldInvalid('telefono')"
+              >
+              <span class="error-message" *ngIf="isFieldInvalid('telefono')">
+                {{getErrorMessage('telefono')}}
+              </span>
+            </div>
+          </div>
+
+          <button 
+            type="submit" 
+            class="button-primary u-full-width"
+            [disabled]="checkoutForm.invalid || cartItems.length === 0 || processing"
+          >
+            {{processing ? 'Procesando...' : 'Confirmar Compra'}}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

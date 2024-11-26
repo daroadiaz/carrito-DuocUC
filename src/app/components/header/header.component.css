@@ -1,0 +1,260 @@
+.header {
+  padding: 1rem 0;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.header.scrolled {
+  padding: 0.5rem 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.brand {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.welcome-message {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #64748b;
+  font-weight: 500;
+}
+
+#auth-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.button-primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.button-success {
+  background-color: #10b981;
+  color: white;
+}
+
+.button-success:hover {
+  background-color: #059669;
+}
+
+.cart-container {
+  position: relative;
+}
+
+#img-carrito {
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease;
+  filter: invert(30%);
+}
+
+#img-carrito:hover {
+  transform: scale(1.1);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ef4444;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+#carrito {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 1rem);
+  background: white;
+  padding: 1.5rem;
+  min-width: 360px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+#carrito.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#lista-carrito {
+  margin-bottom: 1.5rem;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#lista-carrito th {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid #e2e8f0;
+  font-weight: 600;
+  color: #64748b;
+}
+
+#lista-carrito td {
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: middle;
+}
+
+#lista-carrito img {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.cart-item-title {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.cart-item-price {
+  font-weight: 600;
+  color: #10b981;
+}
+
+.borrar-curso {
+  background: #ef4444;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.borrar-curso:hover {
+  background: #dc2626;
+  transform: scale(1.1);
+}
+
+.cart-total {
+  text-align: right;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #1e293b;
+  margin: 1.5rem 0;
+  padding-top: 1rem;
+  border-top: 2px solid #e2e8f0;
+}
+
+.cart-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 2rem;
+  color: #64748b;
+}
+
+.empty-cart-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0.75rem 0;
+  }
+
+  .brand {
+    font-size: 1.5rem;
+  }
+
+  .welcome-message {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  #carrito {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .cart-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animated {
+  animation: slideIn 0.3s ease;
+}

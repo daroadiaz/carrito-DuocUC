@@ -1,0 +1,47 @@
+.register-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 2rem;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+input.ng-invalid.ng-touched {
+  border-color: #e74c3c;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.button-primary {
+  margin-top: 1rem;
+}
+
+.button-primary:disabled {
+  background-color: #cccccc;
+  border-color: #bbbbbb;
+  cursor: not-allowed;
+}
+
+.password-requirements {
+  color: #666;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.password-requirements ul {
+  margin: 0.5rem 0 0 1.5rem;
+  padding: 0;
+}
+
+.password-requirements li {
+  margin-bottom: 0.25rem;
+}

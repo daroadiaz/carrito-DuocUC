@@ -1,0 +1,17 @@
+<div class="card">
+  <img [src]="producto.imagen" [alt]="producto.titulo" class="imagen-curso u-full-width">
+  <div class="info-card">
+    <h4>{{producto.titulo}}</h4>
+    <p class="precio">{{producto.precio}} <span class="u-pull-right"></span></p>
+    <button 
+      class="u-full-width button-primary button agregar-carrito"
+      (click)="addToCartWithAnimation()"
+      [disabled]="showAddedMessage"
+    >
+      {{showAddedMessage ? '¡Agregado!' : 'Agregar Al Carrito'}}
+    </button>
+  </div>
+  <div class="added-message" *ngIf="showAddedMessage">
+    ¡Producto agregado al carrito!
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<app-header></app-header>
+
+<section id="hero">
+  <div class="hero-content animated">
+    <h1 class="hero-title">Bienvenido a DuocUC Store</h1>
+    <p class="hero-subtitle">Descubre nuestros cursos y productos exclusivos</p>
+  </div>
+</section>
+
+<div id="lista-cursos" class="container animated">
+  <h2 class="encabezado">Nuestros Productos</h2>
+  
+  <div class="products-grid">
+    <div class="product-wrapper" *ngFor="let producto of productos; let i = index" 
+         [style.animation-delay]="i * 0.1 + 's'">
+      <app-product-card
+        [producto]="producto"
+        (addToCart)="agregarAlCarrito($event)"
+      ></app-product-card>
+    </div>
+  </div>
+</div>

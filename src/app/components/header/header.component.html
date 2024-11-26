@@ -1,0 +1,96 @@
+<header id="header" class="header" [class.scrolled]="scrolled">
+  <div class="container">
+    <div class="row">
+      <div class="four columns">
+        <h2 class="brand">
+          DuocUC Store
+        </h2>
+      </div>
+      
+      <div class="three columns" id="user-info">
+        <h3 class="welcome-message animated" *ngIf="currentUser">
+          ¡Bienvenido, {{currentUser.username}}!
+        </h3>
+      </div>
+      
+      <div class="three columns">
+        <div id="auth-buttons">
+          <button 
+            *ngIf="currentUser"
+            id="logout" 
+            class="button button-primary"
+            (click)="logout()"
+          >
+            Cerrar Sesión
+          </button>
+        </div>
+      </div>
+      
+      <div class="two columns u-pull-right">
+        <div class="cart-container">
+          <img 
+            src="assets/images/cart.png" 
+            id="img-carrito" 
+            alt="Carrito de compras"
+            (click)="toggleCart()"
+          >
+          <span class="cart-badge" *ngIf="getItemCount() > 0">
+            {{getItemCount()}}
+          </span>
+          
+          <div id="carrito" [class.show]="showCart" class="animated">
+            <table id="lista-carrito" class="u-full-width" *ngIf="cartItems.length > 0">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Precio</th>
+                  <th>Cant.</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of cartItems" class="cart-item">
+                  <td>
+                    <div class="cart-item-info">
+                      <img [src]="item.imagen" width="50" [alt]="item.titulo">
+                      <span class="cart-item-title">{{item.titulo}}</span>
+                    </div>
+                  </td>
+                  <td class="cart-item-price">{{item.precio}}</td>
+                  <td>{{item.cantidad}}</td>
+                  <td>
+                    <button class="borrar-curso" (click)="removeItem(item.id, $event)">×</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="empty-cart" *ngIf="cartItems.length === 0">
+              <div class="empty-cart-icon">🛒</div>
+              <p>Tu carrito está vacío</p>
+            </div>
+
+            <div class="cart-total" *ngIf="cartItems.length > 0">
+              Total: {{getTotal() | currency}}
+            </div>
+            
+            <div class="cart-buttons" *ngIf="cartItems.length > 0">
+              <button 
+                class="button"
+                (click)="clearCart()"
+              >
+                Vaciar Carrito
+              </button>
+              <button 
+                class="button button-success"
+                (click)="checkout()"
+              >
+                Finalizar Compra
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
