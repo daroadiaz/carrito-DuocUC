@@ -1,26 +1,26 @@
 # CarritoDuocUC
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+Este proyecto fue creado utilizando Angular CLI versión 19.0.2.
 
-## Development server
+## Servidor de desarrollo
 
-To start a local development server, run:
+Para iniciar el servidor local, ejecuta:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Luego, abre tu navegador y ve a http://localhost:4200/. Los cambios que realices en los archivos del proyecto se reflejarán automáticamente.
 
-## Code scaffolding
+## Crear componentes u otros elementos
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Para generar un nuevo componente, ejecuta:
 
 ```bash
 ng generate component component-name
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Para más opciones y esquemas disponibles (como directivas o pipes), ejecuta:
 
 ```bash
 ng generate --help
@@ -28,32 +28,39 @@ ng generate --help
 
 ## Building
 
-To build the project run:
+Compilar el proyecto:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Los archivos compilados se guardarán en la carpeta dist/. La compilación para producción optimiza el rendimiento.
 
-## Running unit tests
+## Ejecutar pruebas unitarias
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Para correr las pruebas unitarias:
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## Documentación del proyecto
 
-For end-to-end (e2e) testing, run:
+Para generar la documentación del proyecto, primero instala Compodoc:
 
 ```bash
-ng e2e
+npm install --save-dev @compodoc/compodoc
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Luego, genera la documentación con:
 
-## Additional Resources
+```bash
+npx compodoc -p tsconfig.json
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Esto generará una carpeta documentation/ con todos los archivos necesarios para visualizar la documentación del proyecto. Para ver la documentación en tu navegador, inicia el servidor de Compodoc con:
+
+```bash
+npx compodoc -s
+```
+Accede a la documentación en http://localhost:8080/.
