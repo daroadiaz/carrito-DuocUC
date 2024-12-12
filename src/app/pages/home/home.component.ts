@@ -18,6 +18,7 @@ import { Product } from '../../interfaces/product.interface';
 export class HomeComponent implements OnInit {
   productos: Product[] = [];
   loading = true;
+  error = false; // Añadida la variable error
   retryCount = 0;
   maxRetries = 3;
 
@@ -34,28 +35,31 @@ export class HomeComponent implements OnInit {
 
   loadProducts(): void {
     this.loading = true;
+    this.error = false; // Resetear el error al comenzar la carga
 
     this.productService.getProducts().subscribe({
       next: (products) => {
         if (products && products.length > 0) {
           this.productos = products;
           this.loading = false;
+          this.error = false;
         } else if (this.retryCount < this.maxRetries) {
-          // Reintentar si no hay productos
           this.retryCount++;
           setTimeout(() => this.loadProducts(), 1000);
         } else {
           this.loading = false;
+          this.error = true;
           this.notificationService.error('No se pudieron cargar los productos');
         }
       },
-      error: (error) => {
-        console.error('Error loading products:', error);
+      error: (err) => {
+        console.error('Error loading products:', err);
         if (this.retryCount < this.maxRetries) {
           this.retryCount++;
           setTimeout(() => this.loadProducts(), 1000);
         } else {
           this.loading = false;
+          this.error = true;
           this.notificationService.error('Error al cargar los productos');
         }
       }
@@ -69,14 +73,19 @@ export class HomeComponent implements OnInit {
 
   refreshProducts(): void {
     this.retryCount = 0;
+    this.error = false;
+    this.loading = true;
+    
     this.productService.refreshProducts().subscribe({
       next: (products) => {
         this.productos = products;
         this.loading = false;
+        this.error = false;
         this.notificationService.success('Productos actualizados correctamente');
       },
       error: () => {
         this.loading = false;
+        this.error = true;
         this.notificationService.error('Error al actualizar los productos');
       }
     });
