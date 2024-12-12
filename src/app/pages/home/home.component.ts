@@ -5,6 +5,7 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { CartService } from '../../services/cart.service';
 import { NotificationService } from '../../services/notification.service';
+import { ProductsService } from '../../services/products.service';
 import { Product } from '../../interfaces/product.interface';
 
 @Component({
@@ -15,44 +16,69 @@ import { Product } from '../../interfaces/product.interface';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  productos: Product[] = [
-    {
-      id: '1',
-      imagen: 'assets/images/curso4.jpg',
-      titulo: 'Huerto en casa',
-      precio: '$200',
-      cantidad: 0,
-      descripcion: 'Aprende a crear y mantener tu propio huerto urbano'
-    },
-    {
-      id: '2',
-      imagen: 'assets/images/curso5.jpg',
-      titulo: 'Decora tu hogar',
-      precio: '$1020',
-      cantidad: 0,
-      descripcion: 'Técnicas profesionales de decoración de interiores'
-    },
-    {
-      id: '3',
-      imagen: 'assets/images/curso1.jpg',
-      titulo: 'Diseño Web',
-      precio: '$1020',
-      cantidad: 0,
-      descripcion: 'Domina las últimas tecnologías web'
-    }
-  ];
+  productos: Product[] = [];
+  loading = true;
+  retryCount = 0;
+  maxRetries = 3;
 
   constructor(
     private cartService: CartService,
     private notificationService: NotificationService,
+    private productService: ProductsService,
     private router: Router
   ) {}
 
+  ngOnInit(): void {
+    this.loadProducts();
+  }
 
-  ngOnInit(): void {}
+  loadProducts(): void {
+    this.loading = true;
+
+    this.productService.getProducts().subscribe({
+      next: (products) => {
+        if (products && products.length > 0) {
+          this.productos = products;
+          this.loading = false;
+        } else if (this.retryCount < this.maxRetries) {
+          // Reintentar si no hay productos
+          this.retryCount++;
+          setTimeout(() => this.loadProducts(), 1000);
+        } else {
+          this.loading = false;
+          this.notificationService.error('No se pudieron cargar los productos');
+        }
+      },
+      error: (error) => {
+        console.error('Error loading products:', error);
+        if (this.retryCount < this.maxRetries) {
+          this.retryCount++;
+          setTimeout(() => this.loadProducts(), 1000);
+        } else {
+          this.loading = false;
+          this.notificationService.error('Error al cargar los productos');
+        }
+      }
+    });
+  }
 
   agregarAlCarrito(producto: Product): void {
     this.cartService.addToCart(producto);
     this.notificationService.success(`${producto.titulo} agregado al carrito`);
+  }
+
+  refreshProducts(): void {
+    this.retryCount = 0;
+    this.productService.refreshProducts().subscribe({
+      next: (products) => {
+        this.productos = products;
+        this.loading = false;
+        this.notificationService.success('Productos actualizados correctamente');
+      },
+      error: () => {
+        this.loading = false;
+        this.notificationService.error('Error al actualizar los productos');
+      }
+    });
   }
 }

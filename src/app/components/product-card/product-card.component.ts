@@ -17,7 +17,6 @@ export class ProductCardComponent {
     this.addToCart.emit(this.producto);
   }
 
-  // Animación al agregar al carrito
   showAddedMessage = false;
 
   addToCartWithAnimation(): void {

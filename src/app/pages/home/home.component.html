@@ -10,7 +10,18 @@
 <div id="lista-cursos" class="container animated">
   <h2 class="encabezado">Nuestros Productos</h2>
   
-  <div class="products-grid">
+  <div *ngIf="loading" class="text-center py-4">
+    <p>Cargando productos...</p>
+  </div>
+
+  <div *ngIf="!loading && error" class="text-center py-4">
+    <p>Hubo un problema al cargar los productos</p>
+    <button (click)="refreshProducts()" class="btn-refresh">
+      Intentar nuevamente
+    </button>
+  </div>
+  
+  <div class="products-grid" *ngIf="!loading && productos.length > 0">
     <div class="product-wrapper" *ngFor="let producto of productos; let i = index" 
          [style.animation-delay]="i * 0.1 + 's'">
       <app-product-card
