@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Verificar autenticación
     if (!auth.isAuthenticated()) {
-        window.location.href = './login/login.html';
+        window.location.href = '../login/login.html';
         return;
     }
 
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.getElementById('logout').addEventListener('click', function() {
             auth.logout();
-            window.location.href = './login/login.html';
+            window.location.href = '../login/login.html';
         });
     }
 
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let total = 0;
 
         if (carrito.length === 0) {
-            window.location.href = './index.html';
+            window.location.href = '../index.html';
             return;
         }
 
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Limpiar carrito
             localStorage.removeItem('carrito');
             // Redireccionar
-            window.location.href = './index.html';
+            window.location.href = '../index.html';
         }, 1000);
     });
 });
