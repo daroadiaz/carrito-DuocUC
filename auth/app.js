@@ -42,7 +42,7 @@ function inicializarUI() {
     // Agregar evento al botón de cerrar sesión
     document.getElementById('logout').addEventListener('click', function() {
         auth.logout();
-        window.location.href = '../login/login.html';
+        window.location.href = './login/login.html';
     });
 
     // Cargar carrito guardado
