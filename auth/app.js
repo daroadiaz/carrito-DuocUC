@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Verificar autenticación al cargar la página
     if (!auth.isAuthenticated()) {
         // Si no hay sesión, redirigir a login
-        window.location.href = 'login.html';
+        window.location.href = '../login/login.html';
         return;
     }
 
@@ -42,7 +42,7 @@ function inicializarUI() {
     // Agregar evento al botón de cerrar sesión
     document.getElementById('logout').addEventListener('click', function() {
         auth.logout();
-        window.location.href = 'login.html';
+        window.location.href = '../login/login.html';
     });
 
     // Cargar carrito guardado
@@ -68,7 +68,7 @@ function cargarEventListeners() {
     finalizarCompraBtn.addEventListener('click', (e) => {
         e.preventDefault();
         if (articulosCarrito.length > 0) {
-            window.location.href = 'checkout.html';
+            window.location.href = './checkout/checkout.html';
         } else {
             alert('El carrito está vacío');
         }

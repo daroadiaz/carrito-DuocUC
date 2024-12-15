@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Verificar si ya hay una sesión activa
     if (auth.isAuthenticated()) {
-        window.location.href = 'index.html';
+        window.location.href = './index.html';
         return;
     }
 
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('¡Registro exitoso! Por favor, inicia sesión.');
             
             // Redirigir al login
-            window.location.href = 'login.html';
+            window.location.href = '../login/login.html';
         } catch (error) {
             // Manejar errores específicos
             if (error.message.includes('usuario')) {
