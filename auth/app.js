@@ -114,10 +114,10 @@ function eliminarCurso(e) {
 function leerDatosCurso(curso) {
     // Crear un objeto con el contenido del curso actual
     const infoCurso = {
-        imagen: curso.querySelector('img').src,
-        titulo: curso.querySelector('h4').textContent,
-        precio: curso.querySelector('.precio').textContent,
-        id: curso.querySelector('a').getAttribute('data-id'),
+        imagen: curso.querySelector('img.card-img-top').src,
+        titulo: curso.querySelector('.card-title').textContent,
+        precio: curso.querySelector('.card-text').textContent,
+        id: curso.querySelector('button.agregar-carrito').getAttribute('data-id'),
         cantidad: 1
     }
 
