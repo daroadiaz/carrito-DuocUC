@@ -575,7 +575,7 @@ ul {
 }
 
 #hero {
-    background-image: url(../img/hero.jpg);
+    background-image: url('/assets/img/hero.jpg');
     height: 350px;
     background-size: cover;
 }
@@ -602,7 +602,6 @@ ul {
     top: 0;
     height: 100%;
     width: 50px;
-    background-image: url(../img/lupa.png);
     background-position: right center;
     background-repeat: no-repeat;
     border: none;
@@ -634,13 +633,13 @@ ul {
     }
 }
 .icono1 {
-    background-image: url(../img/icono1.png);
+    background-image: url('/../img/icono1.png');
 }
 .icono2 {
-    background-image: url(../img/icono2.png);
+    background-image: url('/../img/icono2.png');
 }
 .icono3 {
-    background-image: url(../img/icono3.png);
+    background-image: url('/../img/icono3.png');
 }
 
 #lista-cursos .card {

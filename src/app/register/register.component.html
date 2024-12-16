@@ -1,0 +1,93 @@
+<header id="header" class="header">
+    <div class="container">
+        <div class="row">
+            <div class="four columns">
+                <h2>Ecommerce DuocUC</h2>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="six columns offset-by-three">
+            <div class="register-container">
+                <h2 class="text-center">Crear Cuenta</h2>
+                <form (ngSubmit)="onSubmit($event)" novalidate>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <label for="username">Nombre de Usuario</label>
+                            <input 
+                                class="u-full-width" 
+                                type="text" 
+                                id="username" 
+                                placeholder="Elige un nombre de usuario"
+                                required
+                                [(ngModel)]="username"
+                                name="username"
+                                (input)="onUsernameInput()"
+                            >
+                            <span class="error-message">{{ usernameError }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <label for="email">Email</label>
+                            <input 
+                                class="u-full-width" 
+                                type="email" 
+                                id="email" 
+                                placeholder="correo@ejemplo.com"
+                                required
+                                [(ngModel)]="email"
+                                name="email"
+                                (input)="onEmailInput()"
+                            >
+                            <span class="error-message">{{ emailError }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <label for="password">Contraseña</label>
+                            <input 
+                                class="u-full-width" 
+                                type="password" 
+                                id="password" 
+                                placeholder="Crea una contraseña segura"
+                                required
+                                [(ngModel)]="password"
+                                name="password"
+                                (input)="onPasswordInput()"
+                            >
+                            <span class="error-message">{{ passwordError }}</span>
+                            <small class="password-requirements">
+                                La contraseña debe contener:
+                                <ul>
+                                    <li>Mínimo 8 caracteres</li>
+                                    <li>Al menos una letra mayúscula</li>
+                                    <li>Al menos un número</li>
+                                    <li>Al menos un carácter especial (!&#64;#$%^&*)</li>
+                                </ul>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <button class="button-primary u-full-width" type="submit">
+                                Registrarse
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="twelve columns text-center">
+                            <p>
+                                ¿Ya tienes una cuenta? 
+                                <a routerLink="/login">Inicia sesión aquí</a>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

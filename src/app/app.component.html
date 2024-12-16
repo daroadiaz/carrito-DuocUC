@@ -1,0 +1,60 @@
+<header id="header" class="header">
+    <div class="container">
+        <div class="row">
+            <div class="four columns">
+                <h2>Ecommerce DuocUC</h2>
+            </div>
+            <div class="three columns" *ngIf="usuario">
+                <h3>Bienvenido, {{usuario.username}}</h3>
+            </div>
+            <div class="three columns">
+                <div id="auth-buttons">
+                    <button *ngIf="usuario" (click)="cerrarSesion()" class="button button-primary">
+                        Cerrar Sesión
+                    </button>
+                    <button *ngIf="!usuario" routerLink="/login" class="button button-primary">
+                        Iniciar Sesión
+                    </button>
+                </div>
+            </div>
+            <div class="two columns u-pull-right">
+                <ul>
+                    <li class="submenu">
+                        <img src="assets/img/cart.png" id="img-carrito" alt="carrito">
+                        <div id="carrito">
+                            <table id="lista-carrito" class="u-full-width">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Aquí agregamos el ngFor para iterar sobre articulosCarrito -->
+                                    <tr *ngFor="let producto of articulosCarrito">
+                                        <td><img [src]="producto.imagen" width="50"></td>
+                                        <td>{{ producto.titulo }}</td>
+                                        <td>{{ producto.precio }}</td>
+                                        <td>{{ producto.cantidad }}</td>
+                                        <td>
+                                            <button (click)="eliminarCurso(producto.id)" class="borrar-curso">X</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="cart-buttons">
+                                <button (click)="vaciarCarrito()" class="button u-half-width">Vaciar Carrito</button>
+                                <button (click)="finalizarCompra()" class="button button-success u-half-width">Finalizar Compra</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<router-outlet></router-outlet>
