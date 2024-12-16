@@ -1,23 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 
-/**
- * Interfaz para representar un artículo del carrito.
- */
 interface ItemCarrito {
+  id: string;
   imagen: string;
   titulo: string;
   precio: string;
   cantidad: number;
 }
 
-/**
- * Componente de Checkout.
- * Permite a los usuarios revisar y confirmar su compra.
- */
+interface Purchase {
+  nombre: string;
+  email: string;
+  direccion: string;
+  productos: ItemCarrito[];
+}
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -38,19 +40,22 @@ export class CheckoutComponent implements OnInit {
   emailError: string = '';
   direccionError: string = '';
 
-  constructor(private auth: AuthService, private router: Router) {}
+  compraConfirmada: boolean = false;
+  cargando: boolean = false; // Indicador de carga
 
-  /**
-   * Inicializa el componente y verifica la autenticación.
-   */
+  private apiUrl = 'http://localhost:8000';
+
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private http: HttpClient
+  ) { }
+
   ngOnInit(): void {
     this.verificarAutenticacion();
     this.cargarCarrito();
   }
 
-  /**
-   * Verifica si el usuario está autenticado.
-   */
   private verificarAutenticacion(): void {
     if (!this.auth.isAuthenticated()) {
       this.router.navigate(['/login']);
@@ -59,22 +64,18 @@ export class CheckoutComponent implements OnInit {
     this.usuario = this.auth.getCurrentUser();
   }
 
-  /**
-   * Carga los datos del carrito desde localStorage.
-   */
   private cargarCarrito(): void {
     const carrito = JSON.parse(localStorage.getItem('carrito') || '[]') as ItemCarrito[];
     if (carrito.length === 0) {
+      console.warn("El carrito está vacío.");
       this.router.navigate(['/']);
       return;
     }
     this.articulosCarrito = carrito;
+    console.log("Carrito cargado: ", this.articulosCarrito);
     this.calcularTotal();
   }
 
-  /**
-   * Calcula el total de la compra.
-   */
   private calcularTotal(): void {
     this.total = this.articulosCarrito.reduce(
       (sum, item) => sum + this.calcularPrecioItem(item),
@@ -82,32 +83,43 @@ export class CheckoutComponent implements OnInit {
     );
   }
 
-  /**
-   * Calcula el precio total de un artículo.
-   * @param item Artículo del carrito.
-   * @returns Precio total.
-   */
   calcularPrecioItem(item: ItemCarrito): number {
     const precioNumerico = parseFloat(item.precio.replace(/[$,]/g, ''));
     return isNaN(precioNumerico) ? 0 : precioNumerico * item.cantidad;
   }
 
-  /**
-   * Maneja el evento de envío del formulario de checkout.
-   * @param event Evento del formulario.
-   */
   async onSubmit(event: Event): Promise<void> {
     event.preventDefault();
     this.clearErrors();
     if (!this.validarFormulario()) return;
 
+    this.cargando = true; // Iniciar indicador de carga
+    await this.enviarCompra();
     this.procesarCompra();
   }
 
-  /**
-   * Valida el formulario de checkout.
-   * @returns True si el formulario es válido.
-   */
+  private async enviarCompra(): Promise<void> {
+    const purchase: Purchase = {
+      nombre: this.nombre,
+      email: this.email,
+      direccion: this.direccion,
+      productos: this.articulosCarrito,
+    };
+
+    try {
+      const response = await this.http
+        .post(`${this.apiUrl}/purchases`, purchase)
+        .toPromise();
+      console.log('Compra enviada exitosamente:', response);
+      alert('Compra registrada en el sistema');
+    } catch (error) {
+      console.error('Error al registrar la compra:', error);
+      alert('Ocurrió un error al registrar la compra. Intenta nuevamente.');
+    } finally {
+      this.cargando = false; // Detener indicador de carga
+    }
+  }
+
   private validarFormulario(): boolean {
     if (!this.nombre.trim()) {
       this.nombreError = 'El nombre es requerido';
@@ -124,23 +136,23 @@ export class CheckoutComponent implements OnInit {
     return true;
   }
 
-  /**
-   * Procesa la compra y vacía el carrito.
-   */
   private procesarCompra(): void {
+    this.compraConfirmada = true;
+    localStorage.removeItem('carrito');
     setTimeout(() => {
-      alert('¡Compra exitosa!');
-      localStorage.removeItem('carrito');
-      this.router.navigate(['/']);
-    }, 1000);
+      alert('¡Compra exitosa! Serás redirigido al inicio.');
+      this.navigateToHome();
+    }, 3000);
   }
 
-  /**
-   * Limpia los mensajes de error del formulario.
-   */
   private clearErrors(): void {
     this.nombreError = '';
     this.emailError = '';
     this.direccionError = '';
+  }
+
+  // Método público para navegar al inicio
+  public navigateToHome(): void {
+    this.router.navigate(['/']);
   }
 }
