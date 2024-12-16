@@ -22,6 +22,11 @@ export class AuthService {
 
   constructor() { }
 
+  /**
+ * Valida un correo electrónico.
+ * @param email Correo electrónico a validar.
+ * @returns `true` si el correo es válido, de lo contrario `false`.
+ */
   public validateEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -53,6 +58,15 @@ export class AuthService {
     return true;
   }
 
+  /**
+ * Registra un nuevo usuario.
+ * Valida los datos antes de almacenarlos.
+ * @param username Nombre de usuario.
+ * @param email Correo electrónico.
+ * @param password Contraseña.
+ * @param role Rol del usuario. Valor por defecto: `customer`.
+ * @returns El objeto del usuario registrado.
+ */
   register(username: string, email: string, password: string, role: string = 'customer'): User {
     if (!username || !email || !password) {
       throw new Error('Todos los campos son obligatorios');

@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule]
 })
 export class HomeComponent {
-  constructor() {}
+  constructor() { }
 
   productos = [
     {
@@ -44,12 +44,17 @@ export class HomeComponent {
     }
   ];
 
+  /**
+ * Agrega un producto al carrito.
+ * Almacena los datos del producto en el localStorage.
+ * @param producto Objeto del producto seleccionado.
+ */
   agregarCurso(producto: any) {
     console.log('Agregando producto:', producto);
     const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
-    
+
     const productoConCantidad = { ...producto, cantidad: 1 };
-  
+
     carrito.push(productoConCantidad);
     localStorage.setItem('carrito', JSON.stringify(carrito));
   }

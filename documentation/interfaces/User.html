@@ -1,0 +1,813 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>carrito-duoc-uc documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">carrito-duoc-uc documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  User</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/auth/auth.service.ts</code>
+        </p>
+
+
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#active" 
+>
+                                            active
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#createdAt" 
+>
+                                            createdAt
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#email" 
+>
+                                            email
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#id" 
+>
+                                            id
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#lastLogin" 
+>
+                                            lastLogin
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#password" 
+>
+                                            password
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#role" 
+>
+                                            role
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#updatedAt" 
+>
+                                            updatedAt
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#username" 
+>
+                                            username
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="active"></a>
+                                        <span class="name "><b>active</b>
+                                            <a href="#active">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>active:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="createdAt"></a>
+                                        <span class="name "><b>createdAt</b>
+                                            <a href="#createdAt">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>createdAt:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="email"></a>
+                                        <span class="name "><b>email</b>
+                                            <a href="#email">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>email:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="id"></a>
+                                        <span class="name "><b>id</b>
+                                            <a href="#id">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>id:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="lastLogin"></a>
+                                        <span class="name "><b>lastLogin</b>
+                                            <a href="#lastLogin">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>lastLogin:     <code>string | null</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string | null</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="password"></a>
+                                        <span class="name "><b>password</b>
+                                            <a href="#password">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>password:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="role"></a>
+                                        <span class="name "><b>role</b>
+                                            <a href="#role">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>role:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="updatedAt"></a>
+                                        <span class="name "><b>updatedAt</b>
+                                            <a href="#updatedAt">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>updatedAt:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="username"></a>
+                                        <span class="name "><b>username</b>
+                                            <a href="#username">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>username:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+
+interface User {
+  id: string;
+  username: string;
+  email: string;
+  password: string;
+  role: string;
+  createdAt: string;
+  lastLogin: string | null;
+  active: boolean;
+  updatedAt?: string;
+}
+
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class AuthService {
+  private users: User[] &#x3D; JSON.parse(localStorage.getItem(&#x27;users&#x27;) || &#x27;[]&#x27;);
+  private currentUser: User | null &#x3D; JSON.parse(localStorage.getItem(&#x27;currentUser&#x27;) || &#x27;null&#x27;);
+  private isAdmin &#x3D; false;
+
+  constructor() { }
+
+  /**
+ * Valida un correo electrónico.
+ * @param email Correo electrónico a validar.
+ * @returns &#x60;true&#x60; si el correo es válido, de lo contrario &#x60;false&#x60;.
+ */
+  public validateEmail(email: string): boolean {
+    const emailRegex &#x3D; /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  public validatePassword(password: string): boolean {
+    if (password.length &lt; 8) {
+      throw new Error(&#x27;La contraseña debe tener al menos 8 caracteres&#x27;);
+    }
+    if (!/\d/.test(password)) {
+      throw new Error(&#x27;La contraseña debe contener al menos un número&#x27;);
+    }
+    if (!/[A-Z]/.test(password)) {
+      throw new Error(&#x27;La contraseña debe contener al menos una letra mayúscula&#x27;);
+    }
+    if (!/[!@#$%^&amp;*(),.?&quot;:{}|&lt;&gt;]/.test(password)) {
+      throw new Error(&#x27;La contraseña debe contener al menos un carácter especial&#x27;);
+    }
+    return true;
+  }
+
+  public validateUsername(username: string): boolean {
+    if (username.length &lt; 3) {
+      throw new Error(&#x27;El nombre de usuario debe tener al menos 3 caracteres&#x27;);
+    }
+    if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+      throw new Error(&#x27;El nombre de usuario solo puede contener letras, números y guiones bajos&#x27;);
+    }
+    return true;
+  }
+
+  /**
+ * Registra un nuevo usuario.
+ * Valida los datos antes de almacenarlos.
+ * @param username Nombre de usuario.
+ * @param email Correo electrónico.
+ * @param password Contraseña.
+ * @param role Rol del usuario. Valor por defecto: &#x60;customer&#x60;.
+ * @returns El objeto del usuario registrado.
+ */
+  register(username: string, email: string, password: string, role: string &#x3D; &#x27;customer&#x27;): User {
+    if (!username || !email || !password) {
+      throw new Error(&#x27;Todos los campos son obligatorios&#x27;);
+    }
+
+    this.validateUsername(username);
+
+    if (!this.validateEmail(email)) {
+      throw new Error(&#x27;Email inválido&#x27;);
+    }
+
+    if (this.users.find(user &#x3D;&gt; user.email &#x3D;&#x3D;&#x3D; email)) {
+      throw new Error(&#x27;El email ya está registrado&#x27;);
+    }
+
+    if (this.users.find(user &#x3D;&gt; user.username &#x3D;&#x3D;&#x3D; username)) {
+      throw new Error(&#x27;El nombre de usuario ya está en uso&#x27;);
+    }
+
+    this.validatePassword(password);
+
+    const user: User &#x3D; {
+      id: Date.now().toString(),
+      username,
+      email,
+      password,
+      role,
+      createdAt: new Date().toISOString(),
+      lastLogin: null,
+      active: true
+    };
+
+    this.users.push(user);
+    localStorage.setItem(&#x27;users&#x27;, JSON.stringify(this.users));
+    return user;
+  }
+
+  login(email: string, password: string): User {
+    if (!email || !password) {
+      throw new Error(&#x27;Email y contraseña son requeridos&#x27;);
+    }
+
+    const user &#x3D; this.users.find(u &#x3D;&gt; u.email &#x3D;&#x3D;&#x3D; email &amp;&amp; u.password &#x3D;&#x3D;&#x3D; password);
+
+    if (!user) {
+      throw new Error(&#x27;Credenciales inválidas&#x27;);
+    }
+
+    if (!user.active) {
+      throw new Error(&#x27;Usuario desactivado. Contacte al administrador&#x27;);
+    }
+
+    user.lastLogin &#x3D; new Date().toISOString();
+    this.currentUser &#x3D; user;
+    this.isAdmin &#x3D; user.role &#x3D;&#x3D;&#x3D; &#x27;admin&#x27;;
+
+    localStorage.setItem(&#x27;currentUser&#x27;, JSON.stringify(user));
+    this.updateUser(user);
+
+    return user;
+  }
+
+  logout(): void {
+    this.currentUser &#x3D; null;
+    this.isAdmin &#x3D; false;
+    localStorage.removeItem(&#x27;currentUser&#x27;);
+  }
+
+  public updateUser(user: User): void {
+    const index &#x3D; this.users.findIndex(u &#x3D;&gt; u.id &#x3D;&#x3D;&#x3D; user.id);
+    if (index !&#x3D;&#x3D; -1) {
+      this.users[index] &#x3D; user;
+      localStorage.setItem(&#x27;users&#x27;, JSON.stringify(this.users));
+    }
+  }
+
+  isAuthenticated(): boolean {
+    return this.currentUser !&#x3D;&#x3D; null;
+  }
+
+  getCurrentUser(): User | null {
+    return this.currentUser;
+  }
+
+  updateProfile(userId: string, newData: Partial&lt;User&gt;): User {
+    const userIndex &#x3D; this.users.findIndex(u &#x3D;&gt; u.id &#x3D;&#x3D;&#x3D; userId);
+    if (userIndex &#x3D;&#x3D;&#x3D; -1) {
+      throw new Error(&#x27;Usuario no encontrado&#x27;);
+    }
+
+    const updateData &#x3D; { ...newData };
+
+    if (updateData.password) {
+      this.validatePassword(updateData.password);
+    }
+
+    if (updateData.email &amp;&amp; updateData.email !&#x3D;&#x3D; this.users[userIndex].email) {
+      if (!this.validateEmail(updateData.email)) {
+        throw new Error(&#x27;Email inválido&#x27;);
+      }
+      if (this.users.some(u &#x3D;&gt; u.email &#x3D;&#x3D;&#x3D; updateData.email &amp;&amp; u.id !&#x3D;&#x3D; userId)) {
+        throw new Error(&#x27;El email ya está en uso&#x27;);
+      }
+    }
+
+    if (updateData.username &amp;&amp; updateData.username !&#x3D;&#x3D; this.users[userIndex].username) {
+      this.validateUsername(updateData.username);
+      if (this.users.some(u &#x3D;&gt; u.username &#x3D;&#x3D;&#x3D; updateData.username &amp;&amp; u.id !&#x3D;&#x3D; userId)) {
+        throw new Error(&#x27;El nombre de usuario ya está en uso&#x27;);
+      }
+    }
+
+    this.users[userIndex] &#x3D; {
+      ...this.users[userIndex],
+      ...updateData,
+      updatedAt: new Date().toISOString()
+    };
+
+    localStorage.setItem(&#x27;users&#x27;, JSON.stringify(this.users));
+
+    if (this.currentUser &amp;&amp; this.currentUser.id &#x3D;&#x3D;&#x3D; userId) {
+      this.currentUser &#x3D; this.users[userIndex];
+      localStorage.setItem(&#x27;currentUser&#x27;, JSON.stringify(this.currentUser));
+    }
+
+    return this.users[userIndex];
+  }
+
+  resetPassword(email: string): { success: boolean; message: string } {
+    if (!email) {
+      throw new Error(&#x27;Email es requerido&#x27;);
+    }
+
+    if (!this.validateEmail(email)) {
+      throw new Error(&#x27;Email inválido&#x27;);
+    }
+
+    const user &#x3D; this.users.find(u &#x3D;&gt; u.email &#x3D;&#x3D;&#x3D; email);
+    if (!user) {
+      throw new Error(&#x27;No existe una cuenta asociada a este email&#x27;);
+    }
+    return {
+      success: true,
+      message: &#x27;Se ha enviado un enlace de recuperación a tu email&#x27;
+    };
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'User.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

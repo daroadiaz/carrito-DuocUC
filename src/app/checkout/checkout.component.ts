@@ -62,6 +62,9 @@ export class CheckoutComponent implements OnInit {
     this.calcularTotal();
   }
 
+  /**
+ * Calcula el precio total de los artículos en el carrito.
+ */
   private calcularTotal(): void {
     this.total = this.articulosCarrito.reduce((sum, item) => 
       sum + this.calcularPrecioItem(item), 0);

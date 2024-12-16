@@ -2,7 +2,7 @@ import { AuthService } from '../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {Router, RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +12,15 @@ import {Router, RouterLink } from '@angular/router';
   imports: [CommonModule, FormsModule, RouterLink]
 })
 export class LoginComponent implements OnInit {
+  /**
+ * Correo electrónico ingresado por el usuario.
+ */
   email: string = '';
   password: string = '';
   emailError: string = '';
   passwordError: string = '';
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     // Si el usuario ya está autenticado, redirigir a la página principal
@@ -47,7 +50,11 @@ export class LoginComponent implements OnInit {
     this.clearErrors();
     // Podrías agregar validación de password en tiempo real si lo deseas
   }
-
+  /**
+   * Evento disparado al enviar el formulario.
+   * Valida las credenciales e intenta iniciar sesión.
+   * @param event Evento de formulario.
+   */
   async onSubmit(event: Event) {
     event.preventDefault();
     this.clearErrors();

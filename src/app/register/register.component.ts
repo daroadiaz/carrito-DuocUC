@@ -12,6 +12,9 @@ import {Router, RouterLink } from '@angular/router';
   imports: [CommonModule, FormsModule, RouterLink]
 })
 export class RegisterComponent implements OnInit {
+  /**
+ * Nombre de usuario ingresado por el usuario.
+ */
   username: string = '';
   email: string = '';
   password: string = '';
@@ -42,7 +45,10 @@ export class RegisterComponent implements OnInit {
     this[errorField] = message;
   }
 
-  // Validación en tiempo real (opcional)
+  /**
+ * Valida el nombre de usuario en tiempo real.
+ * Muestra un mensaje de error si es inválido.
+ */
   onUsernameInput(): void {
     this.clearErrors();
     try {
