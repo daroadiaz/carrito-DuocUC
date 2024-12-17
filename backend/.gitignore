@@ -1,0 +1,92 @@
+# .gitignore
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Local development settings
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Dependencies
+node_modules/
+
+# Makefile
+.PHONY: setup install run clean test
+
+# Variables
+PYTHON := python
+PIP := pip
+VENV_NAME := venv
+REQUIREMENTS := requirements.txt
+
+# Windows specific commands
+ifeq ($(OS),Windows_NT)
+    PYTHON_VENV := $(VENV_NAME)\Scripts\python
+    PIP_VENV := $(VENV_NAME)\Scripts\pip
+    ACTIVATE := $(VENV_NAME)\Scripts\activate
+    RM := rmdir /s /q
+else
+    # Linux/Unix commands
+    PYTHON_VENV := $(VENV_NAME)/bin/python
+    PIP_VENV := $(VENV_NAME)/bin/pip
+    ACTIVATE := source $(VENV_NAME)/bin/activate
+    RM := rm -rf
+endif
+
+setup:
+	$(PYTHON) -m venv $(VENV_NAME)
+	$(PIP_VENV) install --upgrade pip
+	$(PIP_VENV) install -r $(REQUIREMENTS)
+
+install:
+	$(PIP_VENV) install -r $(REQUIREMENTS)
+
+run:
+	$(PYTHON_VENV) app/main.py
+
+clean:
+	$(RM) $(VENV_NAME)
+	find . -type d -name __pycache__ -exec $(RM) {} +
+	find . -type f -name "*.pyc" -delete
+
+test:
+	$(PYTHON_VENV) -m pytest
+
+requirements:
+	$(PIP_VENV) freeze > $(REQUIREMENTS)
