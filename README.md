@@ -74,6 +74,4 @@ docker build -t carrito-duoc-uc .
 docker run -p 8080:80 carrito-duoc-uc
 ```
 
-
-
 Accede a la documentación en http://localhost:8080/.
