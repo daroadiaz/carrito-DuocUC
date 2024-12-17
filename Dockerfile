@@ -1,5 +1,5 @@
 # Build stage
-FROM node:20.14 AS build
+FROM node:20.17.0 AS build
 
 # Set working directory
 WORKDIR /app
@@ -14,13 +14,13 @@ RUN npm install
 COPY . .
 
 # Build Angular application
-RUN npm run build --prod
+RUN npm run build
 
 # Production stage
 FROM nginx:alpine
 
 # Copy built static files from build stage to nginx html directory
-COPY --from=build /app/dist/web-json/browser /usr/share/nginx/html
+COPY --from=build /app/dist/carrito-duoc-uc/browser /usr/share/nginx/html
 
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf

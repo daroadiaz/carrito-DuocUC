@@ -63,4 +63,17 @@ Esto generará una carpeta documentation/ con todos los archivos necesarios para
 ```bash
 npx compodoc -s
 ```
+
+# Build the Docker image
+```bash
+docker build -t carrito-duoc-uc .
+```
+
+# Run the container
+```bash
+docker run -p 8080:80 carrito-duoc-uc
+```
+
+
+
 Accede a la documentación en http://localhost:8080/.
